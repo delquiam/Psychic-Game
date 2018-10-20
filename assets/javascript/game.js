@@ -18,23 +18,36 @@ console.log(luckyLetter);
 //compare userGuesses to random letter and determine results using conditional statements
 
 document.onkeyup = function (event) {
-    var userGuesses = event.key;
+
     var keyPressed = String.fromCharCode(event.keyCode).toLowerCase();
     //Store Try into variable followed by
     userGuesses.push(keyPressed);
 
-    if (userGuesses === luckyLetter) {
+    if (keyPressed === luckyLetter) {
         wins++;
     } else {
+        guessesLeft--;
+    }
+    if (guessesLeft === 0) {
         losses++;
     }
 
+
     //track guessesLeft??
     //store results in counter variables
-    //display results to the browser solution.  create a var to store a string interspersed with datea from results.  display the data using queryselector.
-
-    document.querySelector("userGuesses").innerHTML = "Your guesses so far: " + userGuesses.join('');
+    //display results to the browser solution.  create a var to store a string interspersed with data from results.  display the data using queryselector.
+    
+        var winner = document.getElementById("wins");
+        var loser = document.getElementById("losses");
+        var remaining = document.getElementById("guessesLeft");
+        var guessed = document.getElementById("guesses");
+        winner.innerHTML = wins;
+        loser.innerHTML = losses;
+        remaining.innerHTML = guessesLeft;
+        guessed.innerHTML =  userGuesses.join(',');
+    
 }
+
 
 
 
