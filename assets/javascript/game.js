@@ -17,35 +17,66 @@ console.log(luckyLetter);
 //have 10 guesses 
 //compare userGuesses to random letter and determine results using conditional statements
 
+printOnScreen();
+
+
 document.onkeyup = function (event) {
 
     var keyPressed = String.fromCharCode(event.keyCode).toLowerCase();
     //Store Try into variable followed by
     userGuesses.push(keyPressed);
 
+    
+
+
     if (keyPressed === luckyLetter) {
         wins++;
-    } else {
-        guessesLeft--;
-    }
-    if (guessesLeft === 0) {
-        losses++;
+        guessesLeft = 0;
+        printOnScreen();
+        reset();  
+        alert("You won!");
+
+        
     }
 
+    if (guessesLeft <=0) {
+        losses++;
+        guessesLeft=0;
+        printOnScreen();
+        reset();
+        alert("You lost!");
+    }
 
     //track guessesLeft??
     //store results in counter variables
     //display results to the browser solution.  create a var to store a string interspersed with data from results.  display the data using queryselector.
     
-        var winner = document.getElementById("wins");
-        var loser = document.getElementById("losses");
-        var remaining = document.getElementById("guessesLeft");
-        var guessed = document.getElementById("guesses");
-        winner.innerHTML = wins;
-        loser.innerHTML = losses;
-        remaining.innerHTML = guessesLeft;
-        guessed.innerHTML =  userGuesses.join(',');
+    printOnScreen();
+    guessesLeft--;
+
     
+   
+
+    
+}
+
+function printOnScreen(){
+    var winner = document.getElementById("wins");
+    var loser = document.getElementById("losses");
+    var remaining = document.getElementById("guessesLeft");
+    var guessed = document.getElementById("guesses");
+    winner.innerHTML = wins;
+    loser.innerHTML = losses;
+    remaining.innerHTML = guessesLeft;
+    guessed.innerHTML =  userGuesses.join(',');
+}
+
+function reset(){
+    //wins=0;
+    //losses=0;
+    
+    guessesLeft=10;
+    userGuesses=[];
 }
 
 
